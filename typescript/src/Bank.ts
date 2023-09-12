@@ -5,35 +5,35 @@ export class Bank {
   private readonly _exchangeRates: Map<string, number> = new Map()
 
   /**
-   * @param currency1
-   * @param currency2
+   * @param current
+   * @param target
    * @param rate
    */
-  static withExchangeRate (currency1: Currency, currency2: Currency, rate: number): Bank {
+  static withExchangeRate (current: Currency, target: Currency, rate: number): Bank {
     const bank = new Bank()
-    bank.addExchangeRate(currency1, currency2, rate)
+    bank.addExchangeRate(current, target, rate)
     return bank
   }
 
   /**
-   * @param currency1
-   * @param currency2
+   * @param current
+   * @param target
    * @param rate
    */
-  addExchangeRate (currency1: Currency, currency2: Currency, rate: number): void {
-    this._exchangeRates.set(currency1 + '->' + currency2, rate)
+  addExchangeRate (current: Currency, target: Currency, rate: number): void {
+    this._exchangeRates.set(current + '->' + target, rate)
   }
 
   /**
    * @param amount
-   * @param currency1
-   * @param currency2
+   * @param current
+   * @param target
    */
-  convert (amount: number, currency1: Currency, currency2: Currency): number {
-    if (!(currency1 === currency2 || this._exchangeRates.has(currency1 + '->' + currency2))) { throw new MissingExchangeRateError(currency1, currency2) }
+  convert (amount: number, current: Currency, target: Currency): number {
+    if (!(current === target || this._exchangeRates.has(current + '->' + target))) { throw new MissingExchangeRateError(current, target) }
 
-    return currency2 === currency1
+    return target === current
         ? amount
-        : amount * this._exchangeRates.get(currency1 + '->' + currency2)
+        : amount * this._exchangeRates.get(current + '->' + target)
   }
 }
