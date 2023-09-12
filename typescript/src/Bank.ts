@@ -11,7 +11,7 @@ export class Bank {
    */
   static withExchangeRate (currency1: Currency, currency2: Currency, rate: number): Bank {
     const bank = new Bank()
-    bank.AddExchangeRate(currency1, currency2, rate)
+    bank.addExchangeRate(currency1, currency2, rate)
     return bank
   }
 
@@ -20,7 +20,7 @@ export class Bank {
    * @param currency2
    * @param rate
    */
-  AddExchangeRate (currency1: Currency, currency2: Currency, rate: number): void {
+  addExchangeRate (currency1: Currency, currency2: Currency, rate: number): void {
     this._exchangeRates.set(currency1 + '->' + currency2, rate)
   }
 
@@ -29,7 +29,7 @@ export class Bank {
    * @param currency1
    * @param currency2
    */
-  Convert (amount: number, currency1: Currency, currency2: Currency): number {
+  convert (amount: number, currency1: Currency, currency2: Currency): number {
     if (!(currency1 === currency2 || this._exchangeRates.has(currency1 + '->' + currency2))) { throw new MissingExchangeRateError(currency1, currency2) }
 
     return currency2 === currency1
