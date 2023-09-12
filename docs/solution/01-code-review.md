@@ -9,3 +9,5 @@
 - One line function -> MoneyCalculator.ts, Bank.ts
 - Documentation -> Missing some docs and return statements
 - Typescrit not in strict mode -> a but useless
+- Don't check devide by 0
+- Useless paramter -> Curency parameter useless in MoneyCalculator.ts
