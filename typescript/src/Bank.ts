@@ -8,6 +8,7 @@ export class Bank {
    * @param current
    * @param target
    * @param rate
+   * @returns {Bank}
    */
   static withExchangeRate (current: Currency, target: Currency, rate: number): Bank {
     const bank = new Bank()
@@ -19,6 +20,7 @@ export class Bank {
    * @param current
    * @param target
    * @param rate
+   * @returns {void}
    */
   addExchangeRate (current: Currency, target: Currency, rate: number): void {
     this._exchangeRates.set(current + '->' + target, rate)
@@ -28,6 +30,7 @@ export class Bank {
    * @param amount
    * @param current
    * @param target
+   * @returns {number}
    */
   convert (amount: number, current: Currency, target: Currency): number {
     if (!(current === target || this._exchangeRates.has(current + '->' + target))) { throw new MissingExchangeRateError(current, target) }
