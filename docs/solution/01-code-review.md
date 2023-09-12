@@ -11,3 +11,4 @@
 - Typescrit not in strict mode -> a but useless
 - Don't check devide by 0
 - Useless paramter -> Curency parameter useless in MoneyCalculator.ts
+- Limit case -> MoneyCalculator don't handle limit cases
