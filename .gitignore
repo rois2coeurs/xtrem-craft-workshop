@@ -374,3 +374,7 @@ reports/
 vendor/
 composer.phar
 composer.lock
+
+# Typescript
+package-lock.json
+pnpm-lock.yaml
