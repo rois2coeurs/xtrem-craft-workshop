@@ -29,7 +29,13 @@ jobs:
     - name: Unit test
       working-directory: ${{env.working-directory}}
       run: |
-        npm run test
+        mkdir reports
+        npm test -- --outputFile=reports/test-result.json --json
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: test-report
+        path: typescript/reports/test-result.json
 
     - name: Striker
       working-directory: ${{env.working-directory}}
