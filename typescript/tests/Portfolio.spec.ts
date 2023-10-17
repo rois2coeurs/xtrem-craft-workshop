@@ -62,4 +62,26 @@ describe('Portfolio', function (): void {
         const action = () => portfolio.evaluate(Currency.KRW, bank)
         expect(action).toThrow(MissingExchangeRateError)
     })
+
+    test('Evaluate multiple currency with a non existing change rate', function (): void {
+        const portfolio: Portfolio = new Portfolio()
+
+        const bank: Bank = Bank.withExchangeRate(Currency.EUR, Currency.USD, 1.2)
+        portfolio.add(0, Currency.EUR)
+        portfolio.add(10, Currency.USD)
+
+        const amount: number = portfolio.evaluate(Currency.USD, bank)
+        expect(amount).toBe(10)
+    })
+
+    test('Evaluate multiple currency with a non existing change rate', function (): void {
+        const portfolio: Portfolio = new Portfolio()
+
+        const bank: Bank = Bank.withExchangeRate(Currency.EUR, Currency.USD, 1.2)
+        portfolio.add(0.5, Currency.EUR)
+        portfolio.add(10, Currency.USD)
+
+        const amount: number = portfolio.evaluate(Currency.USD, bank)
+        expect(amount).toBe(10.6)
+    })
 })
