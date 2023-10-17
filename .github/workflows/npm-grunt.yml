@@ -9,32 +9,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./typescript
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Use Node.js 20.x
       uses: actions/setup-node@v3
       with:
         node-version: 20.x
 
     - name: Build
-      working-directory: ./typescript
+      working-directory: ${{env.working-directory}}
       run: |
         npm install
-  
 
-  test:
-    needs: build
-    name: Test
-    runs-on: ubuntu-latest
+    - name: Unit test
+      working-directory: ${{env.working-directory}}
+      run: |
+        npm run test
 
-    steps:
-      - name: Unit test
-        run: |
-          npm run test
-
-      - name: Striker
-        run: |
-          striker run
+    - name: Striker
+      working-directory: ${{env.working-directory}}
+      run: |
+        striker run
         
         
