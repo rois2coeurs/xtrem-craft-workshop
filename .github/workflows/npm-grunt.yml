@@ -23,9 +23,7 @@ jobs:
     - name: Build
       working-directory: ${{env.working-directory}}
       run: |
-        npm install
-        npm install -g striker-cli
-        
+        npm install        
 
     - name: Unit test
       working-directory: ${{env.working-directory}}
@@ -35,6 +33,6 @@ jobs:
     - name: Striker
       working-directory: ${{env.working-directory}}
       run: |
-        striker run
+        stryker run
         
         
