@@ -1,6 +1,7 @@
 import {Currency} from '../src/Currency'
 import {Bank} from '../src/Bank'
 import {MissingExchangeRateError} from '../src/MissingExchangeRateError'
+import {Money} from "../src/Money";
 
 describe('Bank', function () {
 
@@ -24,7 +25,7 @@ describe('Bank', function () {
 
   test('convert with different exchange rates returns different numbers', () => {
     const bank:Bank = Bank.withExchangeRate(Currency.EUR, Currency.USD, 1.2)
-    const result1: number = bank.convert(10, Currency.EUR, Currency.USD)
+    const result1: Money = bank.convert(new Money(10, Currency.EUR), Currency.USD)
     bank.addExchangeRate(Currency.EUR, Currency.USD, 1.3)
     const result2: number = bank.convert(10, Currency.EUR, Currency.USD)
     bank.addExchangeRate(Currency.EUR, Currency.USD, 1.5)

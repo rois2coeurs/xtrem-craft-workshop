@@ -1,7 +1,7 @@
-import { Currency } from './Currency'
+import { Money } from './Money'
 
 export class MoneyCalculator {
-  static add = (amount: number, currency: Currency, amount2: number): number => amount + amount2
-  static times = (amount: number, currency: Currency, number: number): number => amount * number
-  static divide = (amount: number, currency: Currency, value: number): number => amount / value
+  static add = (money: Money, moneyToAdd: Money): number => money.amount + moneyToAdd.amount
+  static times = (money: Money, time: number): number => money.amount * time
+  static divide = (money: Money, divide: number): number => money.amount / divide
 }
