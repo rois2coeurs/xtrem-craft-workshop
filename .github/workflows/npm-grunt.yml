@@ -14,10 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/upload-artifact@v3
-      with:
-        name: mutation-report
-        path: reports/mutation/mutation.html
 
     - name: Use Node.js 20.x
       uses: actions/setup-node@v3
@@ -39,5 +35,10 @@ jobs:
       working-directory: ${{env.working-directory}}
       run: |
         stryker run
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: mutation-report
+        path: reports/mutation/mutation.html
         
         
