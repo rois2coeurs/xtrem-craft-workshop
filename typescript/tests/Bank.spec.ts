@@ -20,6 +20,7 @@ describe('Bank', function () {
   test('convert throws error in case of missing exchange rates', () => {
     const bank:Bank = Bank.withExchangeRate(Currency.EUR, Currency.USD, 1.2)
     const action: () => number = () => bank.convert(10, Currency.EUR, Currency.KRW)
+    const action: () => number = () => bank.convert(new Money(10, Currency.EUR), Currency.KRW)
     expect(action).toThrow(MissingExchangeRateError).toThrow('EUR-> KRW')
   })
 
@@ -27,12 +28,12 @@ describe('Bank', function () {
     const bank:Bank = Bank.withExchangeRate(Currency.EUR, Currency.USD, 1.2)
     const result1: Money = bank.convert(new Money(10, Currency.EUR), Currency.USD)
     bank.addExchangeRate(Currency.EUR, Currency.USD, 1.3)
-    const result2: number = bank.convert(10, Currency.EUR, Currency.USD)
+    const result2: Money = bank.convert(new Money(10, Currency.EUR), Currency.USD)
     bank.addExchangeRate(Currency.EUR, Currency.USD, 1.5)
-    const result3: number = bank.convert(10, Currency.EUR, Currency.USD)
-    expect(result1).toBe(12)
-    expect(result2).toBe(13)
-    expect(result3).toBe(15)
+    const result3: Money = bank.convert(new Money(10, Currency.EUR), Currency.USD)
+    expect(result1.amount).toBe(12)
+    expect(result2.amount).toBe(13)
+    expect(result3.amount).toBe(15)
   })
 
 })
