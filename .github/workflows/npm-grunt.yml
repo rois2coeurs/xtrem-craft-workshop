@@ -39,6 +39,6 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: mutation-report
-        path: reports/mutation/mutation.html
+        path: typescript/reports/mutation/mutation.html
         
         
