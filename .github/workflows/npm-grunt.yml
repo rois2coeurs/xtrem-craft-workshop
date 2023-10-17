@@ -25,10 +25,21 @@ jobs:
       working-directory: ./typescript
       run: |
         npm install
+  
 
-    - name: Test
-      working-directory: ./typescript
-      run: |
-        npm run test
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Unit test
+        working-directory: ./typescript
+        run: |
+          npm run test
+
+      - name: Striker
+        working-directory: ./typescript
+        run: |
+          striker run
         
         
