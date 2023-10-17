@@ -24,6 +24,8 @@ jobs:
       working-directory: ${{env.working-directory}}
       run: |
         npm install
+        npm install -g striker-cli
+        
 
     - name: Unit test
       working-directory: ${{env.working-directory}}
