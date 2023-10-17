@@ -30,12 +30,10 @@ jobs:
 
     steps:
       - name: Unit test
-        working-directory: typescript
         run: |
           npm run test
 
       - name: Striker
-        working-directory: typescript
         run: |
           striker run
         
