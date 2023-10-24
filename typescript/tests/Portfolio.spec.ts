@@ -22,7 +22,7 @@ describe('Portfolio', function (): void {
         portfolio.add(Money.create(5, Currency.EUR));
 
         const converted: Money = portfolio.evaluate(Currency.EUR, bank)
-        expect(converted.amount).toBe(15)
+        expect(converted).toEqual(Money.create(15, Currency.EUR))
     })
 
     test('Evaluate multiple currency with one already in the portfolio', function (): void {
@@ -33,7 +33,7 @@ describe('Portfolio', function (): void {
         portfolio.add(Money.create(10, Currency.USD))
 
         const amount: Money = portfolio.evaluate(Currency.USD, bank)
-        expect(amount).toBe(22)
+        expect(amount).toEqual(Money.create(22, Currency.USD))
     })
 
     test('Evaluate multiple currency with a non existing change rate', function (): void {
@@ -55,7 +55,7 @@ describe('Portfolio', function (): void {
         portfolio.add(Money.create(10, Currency.USD))
 
         const amount: Money = portfolio.evaluate(Currency.USD, bank)
-        expect(amount).toBe(10)
+        expect(amount).toEqual(Money.create(10, Currency.USD))
     })
 
     test('Evaluate multiple currency with a non existing change rate', function (): void {
@@ -66,6 +66,6 @@ describe('Portfolio', function (): void {
         portfolio.add(Money.create(10, Currency.USD))
 
         const amount: Money = portfolio.evaluate(Currency.USD, bank)
-        expect(amount).toBe(10.6)
+        expect(amount).toEqual(Money.create(10.6, Currency.USD))
     })
 })

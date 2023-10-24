@@ -16,7 +16,8 @@ export class Portfolio {
     add(money: Money): void {
         let moneyExists : Money = this.moneys.find((m) => m.currency === money.currency)
         if (moneyExists) {
-            moneyExists.add(money);
+            this.moneys.splice(this.moneys.indexOf(moneyExists), 1);
+            this.moneys.push(moneyExists.add(money));
         } else {
             this.moneys.push(money);
         }
