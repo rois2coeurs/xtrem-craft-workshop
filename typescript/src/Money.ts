@@ -1,4 +1,9 @@
 import {Currency} from "./Currency";
+import {NegativeMoneyError} from "./errors/NegativeMonneyError";
+import {DivideByZeroError} from "./errors/DivideByZeroError";
+import {MissMatchCurrencyError} from "./errors/MissMatchCurrencyError";
+import {number} from "fp-ts";
+import {InfiniteMoneyError} from "./errors/InfiniteMoneyError";
 
 export class Money {
     private readonly _amount: number;
