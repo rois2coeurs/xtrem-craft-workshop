@@ -14,7 +14,6 @@
 
 ## Invariants
 
-- 
 > On ne peut convertir que si on a un taux de change entre la devise de départ et celle d'arrivée
 > Sauf si la conversion ne change pas le type de monnaire
 > On ne peut pas diviser par 0
@@ -22,5 +21,4 @@
 
 ## Collaborators
 
-- 
-money : tuple d'un montant et d'une currency
+-

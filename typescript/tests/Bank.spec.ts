@@ -14,14 +14,16 @@ describe('Bank', function () {
 
   test('convert from usd to usd returns same value', () => {
     const bank:Bank = Bank.withExchangeRate(Currency.EUR, Currency.USD, 1.2)
-    const result = bank.convert(10, Currency.USD, Currency.USD)
+    const money: Money = new Money(10, Currency.USD)
+    const result: number = bank.convert(money, Currency.USD).amount
     expect(result).toBe(10)
   })
 
   test('convert throws error in case of missing exchange rates', () => {
     const bank:Bank = Bank.withExchangeRate(Currency.EUR, Currency.USD, 1.2)
-    const action: () => number = () => bank.convert(10, Currency.EUR, Currency.KRW)
-    const action: () => number = () => bank.convert(new Money(10, Currency.EUR), Currency.KRW)
+    const money: Money = new Money(10, Currency.EUR)
+    const action: () => number = () => bank.convert(money, Currency.KRW).amount
+    const action2: () => number = () => bank.convert(new Money(10, Currency.EUR), Currency.KRW).amount
     expect(action).toThrow(MissingExchangeRateError).toThrow('EUR-> KRW')
   })
 

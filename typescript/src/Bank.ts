@@ -1,5 +1,5 @@
 import {Currency} from './Currency'
-import {MissingExchangeRateError} from './MissingExchangeRateError'
+import {MissingExchangeRateError} from './errors/MissingExchangeRateError'
 
 export class Bank {
   private readonly _exchangeRates: Map<string, number> = new Map()
@@ -27,8 +27,7 @@ export class Bank {
   }
 
   /**
-   * @param amount
-   * @param current
+   * @param money
    * @param target
    * @returns {number}
    */
