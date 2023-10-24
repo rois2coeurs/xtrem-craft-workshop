@@ -39,7 +39,7 @@ export class Bank {
   }
 
   convertMoney(money: Money, target: Currency): Money {
-    if (!(money.hasCurrency(target) || this._exchangeRates.has(money.currency + '->' + target))) {
+    if (!this.canConcert(money, target)) {
       throw new MissingExchangeRateError(money.currency, target)
     }
 
@@ -48,7 +48,12 @@ export class Bank {
         : money.convert(this.getExchangeRate(money, target), target)
   }
 
+  private canConcert(money: Money, target: Currency) {
+    return money.hasCurrency(target) || this._exchangeRates.has(money.currency + '->' + target);
+  }
+
   private getExchangeRate(money: Money, target: Currency) {
     return this._exchangeRates.get(money.currency + '->' + target);
   }
 }
+

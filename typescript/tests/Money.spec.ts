@@ -19,19 +19,19 @@ describe('Money', function () {
         let money = Money.create(5, Currency.USD)
         let moneyToAdd = Money.create(10, Currency.USD)
         money = money.add(moneyToAdd);
-        expect(money.amount).toBe(15)
+        expect(money).toEqual(Money.create(15, Currency.USD))
     })
 
     test('multiply money return a new money', () => {
         let money = Money.create(10, Currency.EUR)
         money = money.times(2);
-        expect(money.amount).toBe(20)
+        expect(money).toEqual(Money.create(20, Currency.EUR))
     })
 
     test('divide money return a new money', () => {
         let money = Money.create(4002, Currency.KRW)
         money = money.divide(4);
-        expect(money.amount).toBe(1000.5)
+        expect(money).toEqual(Money.create(1000.5, Currency.KRW))
     })
 
     test('cant divide by zero', () => {
