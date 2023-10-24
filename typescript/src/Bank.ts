@@ -1,5 +1,6 @@
 import {Currency} from './Currency'
 import {MissingExchangeRateError} from './errors/MissingExchangeRateError'
+import {Money} from "./Money";
 
 export class Bank {
   private readonly _exchangeRates: Map<string, number> = new Map()
@@ -27,15 +28,27 @@ export class Bank {
   }
 
   /**
-   * @param money
+   * @param amount
+   * @param current
    * @param target
    * @returns {number}
    */
   convert (amount: number, current: Currency, target: Currency): number {
-    if (!(current === target || this._exchangeRates.has(current + '->' + target))) { throw new MissingExchangeRateError(current, target) }
+    const money: Money = Money.create(amount, current)
+    return this.convertMoney(money, target).amount;
+  }
 
-    return target === current
-        ? amount
-        : amount * this._exchangeRates.get(current + '->' + target)
+  convertMoney(money: Money, target: Currency): Money {
+    if (!(money.hasCurrency(target) || this._exchangeRates.has(money.currency + '->' + target))) {
+      throw new MissingExchangeRateError(money.currency, target)
+    }
+
+    return money.hasCurrency(target)
+        ? money
+        : money.convert(this.getExchangeRate(money, target), target)
+  }
+
+  private getExchangeRate(money: Money, target: Currency) {
+    return this._exchangeRates.get(money.currency + '->' + target);
   }
 }

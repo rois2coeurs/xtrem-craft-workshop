@@ -8,7 +8,7 @@ export class Portfolio {
     evaluate(currency: Currency, bank: Bank): Money {
         let evaluateAmount: number = 0
         this.moneys.forEach((money) => {
-            evaluateAmount += bank.convert(money, currency).amount;
+            evaluateAmount += bank.convertMoney(money, currency).amount;
         })
         return  Money.create(evaluateAmount, currency);
     }

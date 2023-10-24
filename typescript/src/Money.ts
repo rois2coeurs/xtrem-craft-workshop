@@ -41,5 +41,13 @@ export class Money {
         if (divide == 0) throw new DivideByZeroError();
         return Money.create(this._amount / divide, this._currency);
     }
+
+    hasCurrency(currency: Currency) {
+        return this.currency === currency;
+    }
+
+    convert(exchangeRate: number, target: Currency) {
+        return Money.create(this._amount * exchangeRate, target);
+    }
 }
 
