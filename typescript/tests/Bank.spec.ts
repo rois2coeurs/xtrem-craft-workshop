@@ -1,13 +1,14 @@
 import {Currency} from '../src/Currency'
 import {Bank} from '../src/Bank'
-import {MissingExchangeRateError} from '../src/MissingExchangeRateError'
+import {MissingExchangeRateError} from '../src/errors/MissingExchangeRateError'
 import {Money} from "../src/Money";
 
 describe('Bank', function () {
 
-  test('convert from eur to usd returns number', () => {
+  test('convert from eur to usd returns', () => {
     const bank:Bank = Bank.withExchangeRate(Currency.EUR, Currency.USD, 1.2)
-    const result: number = bank.convert(10, Currency.EUR, Currency.USD)
+    const money: Money = new Money(10, Currency.EUR)
+    const result: number = bank.convert(money, Currency.USD).amount
     expect(result).toBe(12)
   })
 
