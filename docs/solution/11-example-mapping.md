@@ -4,7 +4,7 @@
 *(rappel, pour chaque US)*
 
 ```markdown
-## Titre de l'US (post-it jaunes)
+## Monnaie pivot (post-it jaune)
 
 > Question (post-it rouge)
 
